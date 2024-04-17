@@ -1,5 +1,5 @@
-import { Product } from "./IProduct";
+import { IProduct } from "./IProduct";
 
-interface MarketplaceProps {
-  products: Product[];
+export interface IMarketplace {
+  products: IProduct[];
 }
