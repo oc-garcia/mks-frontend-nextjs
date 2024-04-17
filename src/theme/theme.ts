@@ -1,10 +1,6 @@
 import { extendTheme } from "@chakra-ui/react";
 
 export const theme = extendTheme({
-  fonts: {
-    heading: "--font-montserrat",
-    body: "--font-montserrat",
-  },
   colors: {
     customBlue: "#0F52BA",
   },
@@ -13,6 +9,7 @@ export const theme = extendTheme({
       body: {
         maxWidth: "100vw",
         overflowX: "hidden",
+        minHeight: "100vh",
       },
       "*": {
         margin: 0,

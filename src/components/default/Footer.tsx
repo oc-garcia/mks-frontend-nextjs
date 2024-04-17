@@ -2,9 +2,9 @@ import { Flex, Text } from "@chakra-ui/react";
 import styled from "@emotion/styled";
 
 const StyledFooter = styled(Flex)`
+  flex-shrink: 0;
   align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
   height: 34px;
   background-color: #eeeeee;
   color: black;
