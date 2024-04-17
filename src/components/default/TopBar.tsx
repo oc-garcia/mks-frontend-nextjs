@@ -30,7 +30,7 @@ const StyledCartIcon = styled(FaShoppingCart)`
 `;
 
 const TopBar = () => {
-  const [cartItems] = useState(0);
+  const [cartItems, setCartItems] = useState(0);
   return (
     <StyledContainer>
       <Title>
