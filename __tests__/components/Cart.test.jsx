@@ -1,4 +1,3 @@
-// Cart.test.jsx
 import { render } from "@testing-library/react";
 import Cart from "../../src/components/default/Cart";
 

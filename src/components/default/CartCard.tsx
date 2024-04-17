@@ -25,13 +25,7 @@ const CartCard: React.FC<CartCardProps> = ({ product }) => {
     CartContext
   ) as CartContextType;
   return (
-    <Card
-      w={"100%"}
-      p={2}
-      size={"sm"}
-      direction={{ base: "column", sm: "row" }}
-      variant="outline"
-      position="relative">
+    <Card w={"100%"} p={2} size={"sm"} direction={{ base: "column", sm: "row" }} variant="outline" position="relative">
       <IconButton
         aria-label="Delete item"
         icon={<FaTimes />}
