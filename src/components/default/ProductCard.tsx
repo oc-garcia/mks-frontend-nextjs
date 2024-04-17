@@ -19,7 +19,7 @@ interface ProductCardProps {
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   return (
-    <Card h={300} w={"100%"} display={"flex"} boxShadow="dark-lg" bgColor={"white"}>
+    <Card  w={"100%"} display={"flex"} boxShadow="dark-lg" bgColor={"white"}>
       <CardHeader h={"50%"} w={"100%"}>
         <Image src={product.photo} alt={product.name} />
       </CardHeader>
