@@ -1,6 +1,19 @@
-import { Box, Button } from "@chakra-ui/react";
+import { CartContext } from "@/contexts/cart/CartContext";
+import { CartContextType } from "@/interfaces/cart/ICartContextType";
+import {
+  Box,
+  Button,
+  Drawer,
+  DrawerBody,
+  DrawerCloseButton,
+  DrawerContent,
+  DrawerHeader,
+  DrawerOverlay,
+  Flex,
+  useDisclosure,
+} from "@chakra-ui/react";
 import styled from "@emotion/styled";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { FaShoppingCart } from "react-icons/fa";
 
 const StyledContainer = styled(Box)`
@@ -30,15 +43,39 @@ const StyledCartIcon = styled(FaShoppingCart)`
 `;
 
 const TopBar = () => {
-  const [cartItems, setCartItems] = useState(0);
+  const { totalItems } = useContext(CartContext) as CartContextType;
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
     <StyledContainer>
       <Title>
         MKS<span> Sistemas</span>
       </Title>
-      <Button leftIcon={<StyledCartIcon />} h={45} w={90} colorScheme="gray" color="black" variant="solid">
-        {cartItems}
+      <Button
+        leftIcon={<StyledCartIcon />}
+        h={45}
+        w={90}
+        colorScheme="gray"
+        color="black"
+        variant="solid"
+        onClick={onOpen}>
+        {totalItems}
       </Button>
+
+      <Drawer isOpen={isOpen} placement="right" onClose={onClose}>
+        <DrawerOverlay>
+          <DrawerContent color={"white"} boxShadow={"dark-lg"} backgroundColor={"customBlue"}>
+            <Flex p={2} alignItems={"center"} justify={"space-between"}>
+              <DrawerCloseButton borderRadius={"50%"} backgroundColor={"black"} m={0} p={0} />
+              <DrawerHeader ml={2} p={0} flex={1}>
+                Carrinho de Compras
+              </DrawerHeader>
+            </Flex>
+
+            <DrawerBody>{/* Add your cart items here */}</DrawerBody>
+          </DrawerContent>
+        </DrawerOverlay>
+      </Drawer>
     </StyledContainer>
   );
 };

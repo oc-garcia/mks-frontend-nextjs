@@ -2,12 +2,13 @@ import { Grid, Flex, Skeleton, useMediaQuery } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import ProductCard from "./ProductCard";
 import { ProductServices } from "@/services/ProductServices";
-import { IProduct } from "@/interfaces/IProduct";
-import { IMarketplace } from "@/interfaces/IMarketplace";
+import { IProduct } from "@/interfaces/product/IProduct";
+import { IMarketplace } from "@/interfaces/product/IMarketplace";
+
 
 const Marketplace: React.FC = () => {
   const [products, setProducts] = useState<IProduct[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState<Boolean>(true);
   const [isMobile] = useMediaQuery("(max-width: 600px)");
 
   useEffect(() => {

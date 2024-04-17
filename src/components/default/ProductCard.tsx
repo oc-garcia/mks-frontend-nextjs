@@ -1,6 +1,9 @@
-import { IProduct } from "@/interfaces/IProduct";
+import { CartContext } from "@/contexts/cart/CartContext";
+import { CartContextType } from "@/interfaces/cart/ICartContextType";
+import { IProduct } from "@/interfaces/product/IProduct";
 import { Card, CardBody, Button, Image, CardHeader, CardFooter, Flex, Text } from "@chakra-ui/react";
 import styled from "@emotion/styled";
+import { useContext } from "react";
 import { FiShoppingBag } from "react-icons/fi";
 
 interface IProductCardProps {
@@ -28,6 +31,8 @@ const CardBodyContainer = styled(Flex)`
 `;
 
 const ProductCard: React.FC<IProductCardProps> = ({ product }) => {
+  const { addProductToCart } = useContext(CartContext) as CartContextType;
+
   return (
     <Card h={"20rem"} display={"flex"} boxShadow={"dark-lg"} bgColor={"white"}>
       <CardHeader display={"flex"} alignItems={"center"} justifyContent={"center"} h={"55%"} w={"100%"}>
@@ -58,6 +63,7 @@ const ProductCard: React.FC<IProductCardProps> = ({ product }) => {
           size={"sm"}
           leftIcon={<FiShoppingBag />}
           borderTopRadius={0}
+          onClick={() => addProductToCart(product)}
           borderBottomRadius={"md"}>
           Comprar
         </Button>
