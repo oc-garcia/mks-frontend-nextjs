@@ -34,7 +34,7 @@ const ProductCard: React.FC<IProductCardProps> = ({ product }) => {
   const { addProductToCart } = useContext(CartContext) as CartContextType;
 
   return (
-    <Card h={"20rem"} display={"flex"} boxShadow={"dark-lg"} bgColor={"white"}>
+    <Card overflow="hidden" h={"20rem"} display={"flex"} boxShadow={"dark-lg"} bgColor={"white"}>
       <CardHeader display={"flex"} alignItems={"center"} justifyContent={"center"} h={"55%"} w={"100%"}>
         <Image h={"100%"} src={product.photo} alt={product.name} objectFit={"cover"} objectPosition={"center"} />
       </CardHeader>

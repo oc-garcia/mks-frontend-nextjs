@@ -3,8 +3,10 @@ import { IProduct } from "@/interfaces/product/IProduct";
 import { CartContext } from "@/contexts/cart/CartContext";
 import { ICartItems } from "@/interfaces/cart/ICartItems";
 
-type CartAction = { type: "ADD_ITEM"; product: IProduct } | { type: "REMOVE_ITEM"; productId: number };
-
+type CartAction =
+  | { type: "ADD_ITEM"; product: IProduct }
+  | { type: "REMOVE_ITEM"; productId: number }
+  | { type: "DECREMENT_ITEM"; productId: number };
 interface CartState {
   cartItems: ICartItems[];
   totalAmount: number;
@@ -44,6 +46,28 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
         totalItems: state.totalItems - removedItem.quantity,
       };
 
+    case "DECREMENT_ITEM":
+      const decrementCartItems = [...state.cartItems];
+      const decrementedItemIndex = decrementCartItems.findIndex((item) => item.id === action.productId);
+
+      if (decrementedItemIndex >= 0 && decrementCartItems[decrementedItemIndex].quantity > 1) {
+        const updatedItem = {
+          ...decrementCartItems[decrementedItemIndex],
+          quantity: decrementCartItems[decrementedItemIndex].quantity - 1,
+        };
+        decrementCartItems[decrementedItemIndex] = updatedItem;
+      } else {
+        decrementCartItems.splice(decrementedItemIndex, 1);
+      }
+
+      const decreasedItem = state.cartItems.find((item) => item.id === action.productId)!;
+      return {
+        ...state,
+        cartItems: decrementCartItems,
+        totalAmount: state.totalAmount - parseFloat(decreasedItem.price),
+        totalItems: state.totalItems - 1,
+      };
+
     default:
       return state;
   }
@@ -64,12 +88,17 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     dispatchCartAction({ type: "REMOVE_ITEM", productId });
   };
 
+  const decrementProductInCart = (productId: number) => {
+    dispatchCartAction({ type: "DECREMENT_ITEM", productId });
+  };
+
   return (
     <CartContext.Provider
       value={{
         cartItems: cartState.cartItems,
         addProductToCart,
         removeProductFromCart,
+        decrementProductInCart,
         totalAmount: cartState.totalAmount,
         totalItems: cartState.totalItems,
       }}>

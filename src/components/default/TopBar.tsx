@@ -1,20 +1,10 @@
 import { CartContext } from "@/contexts/cart/CartContext";
 import { CartContextType } from "@/interfaces/cart/ICartContextType";
-import {
-  Box,
-  Button,
-  Drawer,
-  DrawerBody,
-  DrawerCloseButton,
-  DrawerContent,
-  DrawerHeader,
-  DrawerOverlay,
-  Flex,
-  useDisclosure,
-} from "@chakra-ui/react";
+import { Box, Button, useDisclosure } from "@chakra-ui/react";
 import styled from "@emotion/styled";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { FaShoppingCart } from "react-icons/fa";
+import Cart from "./Cart";
 
 const StyledContainer = styled(Box)`
   max-height: 101px;
@@ -62,20 +52,7 @@ const TopBar = () => {
         {totalItems}
       </Button>
 
-      <Drawer isOpen={isOpen} placement="right" onClose={onClose}>
-        <DrawerOverlay>
-          <DrawerContent color={"white"} boxShadow={"dark-lg"} backgroundColor={"customBlue"}>
-            <Flex p={2} alignItems={"center"} justify={"space-between"}>
-              <DrawerCloseButton borderRadius={"50%"} backgroundColor={"black"} m={0} p={0} />
-              <DrawerHeader ml={2} p={0} flex={1}>
-                Carrinho de Compras
-              </DrawerHeader>
-            </Flex>
-
-            <DrawerBody>{/* Add your cart items here */}</DrawerBody>
-          </DrawerContent>
-        </DrawerOverlay>
-      </Drawer>
+      <Cart isOpen={isOpen} onClose={onClose} />
     </StyledContainer>
   );
 };

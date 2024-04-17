@@ -5,6 +5,7 @@ const defaultValue: CartContextType = {
   cartItems: [],
   addProductToCart: () => {},
   removeProductFromCart: () => {},
+  decrementProductInCart: () => {},
   totalAmount: 0,
   totalItems: 0,
 };
