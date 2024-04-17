@@ -36,7 +36,14 @@ const ProductCard: React.FC<IProductCardProps> = ({ product }) => {
   return (
     <Card overflow="hidden" h={"20rem"} display={"flex"} boxShadow={"dark-lg"} bgColor={"white"}>
       <CardHeader display={"flex"} alignItems={"center"} justifyContent={"center"} h={"55%"} w={"100%"}>
-        <Image h={"100%"} src={product.photo} alt={product.name} objectFit={"cover"} objectPosition={"center"} />
+        <Image
+          maxWidth={"100%"}
+          maxHeight={"100%"}
+          src={product.photo}
+          alt={product.name}
+          objectFit={"cover"}
+          objectPosition={"center"}
+        />
       </CardHeader>
       <CardBody px={5}>
         <CardBodyContainer>
@@ -54,7 +61,7 @@ const ProductCard: React.FC<IProductCardProps> = ({ product }) => {
           {product.description}
         </Text>
       </CardBody>
-      <CardFooter p={0}>
+      <CardFooter p={0} position="sticky" bottom="0">
         <Button
           pt={0}
           flex={1}
